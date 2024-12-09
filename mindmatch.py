@@ -1,5 +1,6 @@
 """Author: Kayla Sallee
-
+Purpose: This Python program helps users find and save therapists based on their gender and specialty preferences, 
+providing an intuitive interface and therapist details for easy access.
 <a href="https://www.flaticon.com/free-icons/therapist" title="therapist icons">Therapist icons created by Good Ware - Flaticon</a>
 """
 
