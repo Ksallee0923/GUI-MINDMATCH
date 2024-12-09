@@ -4,10 +4,12 @@ providing an intuitive interface and therapist details for easy access.
 <a href="https://www.flaticon.com/free-icons/therapist" title="therapist icons">Therapist icons created by Good Ware - Flaticon</a>
 """
 
+import os
 import tkinter as tk
 from tkinter import ttk
 from breezypythongui import EasyFrame
 from tkinter import PhotoImage, Menu, StringVar, Radiobutton, Canvas, Scrollbar
+
 
 # Therapist data
 therapists = [
@@ -32,9 +34,10 @@ class MindMatchApp(EasyFrame):
         self.gender_var = StringVar(value="Any")
         self.specialty_var = None
 
-        # Load the logo image
+        # Load the logo image with a dynamic path
         try:
-            self.logo_image = PhotoImage(file="mindmatch_logo.gif")
+            logo_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "mindmatch_logo.gif")
+            self.logo_image = PhotoImage(file=logo_path)
         except Exception as e:
             print(f"Error loading logo: {e}")
             self.logo_image = None
@@ -45,14 +48,14 @@ class MindMatchApp(EasyFrame):
         """Main screen with Find a Therapist button."""
         self.clear_screen()
 
-        # Add "Welcome to" text and logo side by side
-        tk.Label(self, text="Welcome to", font=("Arial", 20), background="#e6e6fa").grid(row=0, column=0, sticky="E", padx=10, pady=20)
+        # Add "Welcome to" text and logo
+        tk.Label(self, text="Welcome to", font=("Arial", 20), background="#e6e6fa").grid(row=0, column=0, columnspan=2, pady=10)
 
         if self.logo_image:
-            tk.Label(self, image=self.logo_image, background="#e6e6fa").grid(row=0, column=1, sticky="W", padx=10, pady=20)
+            tk.Label(self, image=self.logo_image, background="#e6e6fa").grid(row=1, column=0, columnspan=2, pady=10)
 
         find_button = tk.Button(self, text="Find a Therapist", command=self.show_gender_specialty_screen, font=("Arial", 14))
-        find_button.grid(row=1, column=0, columnspan=2, pady=20)
+        find_button.grid(row=2, column=0, columnspan=2, pady=20)
 
         self.create_hamburger_menu(back_command=None)
 
